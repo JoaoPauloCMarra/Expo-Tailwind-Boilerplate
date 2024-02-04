@@ -3,16 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-	:root {
-		--color-primary: #f3c614;
-		--color-secondary: #353535;
-		--color-tertiary: #2c2c2c;
-		--color-link: #2e78b7;
-	}
 	body {
 		font-family: 'Inter_400Regular';
 		font-weight: 400;
 		font-size: 16px;
+		font-feature-settings:
+			'kern' 1,
+			'liga' 1,
+			'calt' 1;
+		font-synthesis-weight: none;
 		text-rendering: optimizeLegibility;
 	}
 }

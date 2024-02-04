@@ -1,14 +1,9 @@
 import './global.css';
 
 import { useCallback } from 'react';
-import {
-	useFonts,
-	Inter_400Regular,
-	Inter_500Medium,
-	Inter_700Bold
-} from '@expo-google-fonts/inter';
-import { SplashScreen, Slot } from 'expo-router';
-import { View } from 'react-native';
+import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter';
+import { Slot, SplashScreen } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export { default as ErrorBoundary } from '@/app/components/error-boundary';
@@ -17,14 +12,14 @@ SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
 	const [fontsLoaded, fontError] = useFonts({
-		Inter_400Regular,
-		Inter_500Medium,
-		Inter_700Bold
+		Inter_400Regular
 	});
 
-	const onLayoutRootView = useCallback(async () => {
+	const onLayoutRootView = useCallback(() => {
 		if (fontsLoaded || fontError) {
-			await SplashScreen.hideAsync();
+			setTimeout(async () => {
+				await SplashScreen.hideAsync();
+			});
 		}
 	}, [fontsLoaded, fontError]);
 
@@ -34,9 +29,14 @@ const RootLayout = () => {
 
 	return (
 		<SafeAreaProvider onLayout={onLayoutRootView}>
-			<View className="flex-1 bg-slate-100">
-				<Slot />
-			</View>
+			<StatusBar
+				animated
+				backgroundColor="#0f0f0f"
+				networkActivityIndicatorVisible
+				translucent
+				style="light"
+			/>
+			<Slot />
 		</SafeAreaProvider>
 	);
 };

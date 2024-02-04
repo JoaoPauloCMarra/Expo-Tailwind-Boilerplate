@@ -1,16 +1,26 @@
-import { Text, View } from 'react-native';
+import { memo } from 'react';
+import { type ErrorBoundaryProps, Link } from 'expo-router';
+import { View } from 'react-native';
 import Button from './button';
-import type { ErrorBoundaryProps } from 'expo-router';
+import Text from './text';
 
-const ErrorBoundary = (props: ErrorBoundaryProps) => {
-	return (
-		<View className="flex-1 items-center justify-center">
-			<Text className="text-lg text-red-500">{props.error.message}</Text>
-			<Button onPress={props.retry}>
-				<Text className="text-lg text-red-600">Retry</Text>
+const ErrorBoundary = (props: ErrorBoundaryProps) => (
+	<View className="flex-1 items-center justify-center">
+		<Text variant="destructive" size="2xl">
+			{props.error.message}
+		</Text>
+		<View className="pt-8">
+			<Button onPress={props.retry} variant="destructive" size="lg">
+				<Text>Retry</Text>
 			</Button>
+			<Text className="w-full py-4 text-center">or</Text>
+			<Link href="/">
+				<Button variant="outline" size="lg">
+					<Text>Go to the Home Screen</Text>
+				</Button>
+			</Link>
 		</View>
-	);
-};
+	</View>
+);
 
-export default ErrorBoundary;
+export default memo(ErrorBoundary);

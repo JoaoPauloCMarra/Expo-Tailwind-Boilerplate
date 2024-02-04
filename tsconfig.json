@@ -1,20 +1,15 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true,
-    "paths": {
-      "@/components/*": ["./app/components/*"],
-      "@/screens/*": ["./app/screens/*"],
-      "@/api/*": ["./app/api/*"],
-      "@/lib/*": ["./app/lib/*"],
-      "@/*": ["./*"]
-    }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "app-env.d.ts"
-  ]
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"strict": true,
+		"jsx": "preserve",
+		"paths": {
+			"@/components/*": ["./app/components/*"],
+			"@/screens/*": ["./app/screens/*"],
+			"@/api/*": ["./app/api/*"],
+			"@/lib/*": ["./app/lib/*"],
+			"@/*": ["./*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "app-env.d.ts"]
 }
