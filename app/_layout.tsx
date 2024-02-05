@@ -2,13 +2,23 @@ import './global.css';
 
 import { useCallback } from 'react';
 import { useFonts, Inter_400Regular } from '@expo-google-fonts/inter';
-import { Slot, SplashScreen } from 'expo-router';
+import NetInfo from '@react-native-community/netinfo';
+import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react-query';
+import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export { default as ErrorBoundary } from '@/app/components/error-boundary';
+export { default as ErrorBoundary } from '@/components/error-boundary';
 
 SplashScreen.preventAutoHideAsync();
+
+const queryClient = new QueryClient();
+
+onlineManager.setEventListener((setOnline) => {
+	return NetInfo.addEventListener((state) => {
+		setOnline(!!state.isConnected);
+	});
+});
 
 const RootLayout = () => {
 	const [fontsLoaded, fontError] = useFonts({
@@ -36,7 +46,17 @@ const RootLayout = () => {
 				translucent
 				style="light"
 			/>
-			<Slot />
+			<QueryClientProvider client={queryClient}>
+				<Stack
+					initialRouteName="/"
+					screenOptions={{
+						headerShown: false,
+						contentStyle: {
+							backgroundColor: '#0f0f0f'
+						}
+					}}
+				/>
+			</QueryClientProvider>
 		</SafeAreaProvider>
 	);
 };

@@ -1,0 +1,6 @@
+{
+	"fsevents_latency": 0.01,
+	"fsevents_try_resync": true,
+	"fsevents_unsafe_asynchronous": true,
+	"ignore_dirs": ["node_modules", "android", "ios", ".expo", ".github", ".husky", ".vscode"]
+}

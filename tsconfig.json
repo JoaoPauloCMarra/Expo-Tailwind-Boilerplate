@@ -4,10 +4,6 @@
 		"strict": true,
 		"jsx": "preserve",
 		"paths": {
-			"@/components/*": ["./app/components/*"],
-			"@/screens/*": ["./app/screens/*"],
-			"@/api/*": ["./app/api/*"],
-			"@/lib/*": ["./app/lib/*"],
 			"@/*": ["./*"]
 		}
 	},

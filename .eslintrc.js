@@ -1,7 +1,22 @@
 module.exports = {
+	root: true,
+	env: {
+		browser: true,
+		'shared-node-browser': true,
+		node: true,
+		es6: true
+	},
 	extends: ['universe', 'universe/shared/typescript-analysis'],
 	overrides: [
 		{
+			extends: [
+				'plugin:@typescript-eslint/recommended',
+				'plugin:@tanstack/eslint-plugin-query/recommended',
+				'plugin:jsx-a11y/recommended',
+				'plugin:react-hooks/recommended',
+				'plugin:tailwindcss/recommended',
+				'plugin:prettier/recommended'
+			],
 			files: ['*.ts', '*.tsx', '*.d.ts'],
 			plugins: [
 				'@typescript-eslint',
@@ -10,9 +25,7 @@ module.exports = {
 				'jsx-a11y',
 				'react',
 				'react-hooks',
-				// 'react-hook-form',
 				'tailwindcss',
-				// 'vitest',
 				'prettier'
 			],
 			parserOptions: {
@@ -21,7 +34,14 @@ module.exports = {
 			},
 			rules: {
 				'no-unused-vars': 'off',
-				'@typescript-eslint/no-unused-vars': 'error',
+				'@typescript-eslint/no-unused-vars': [
+					'error',
+					{
+						argsIgnorePattern: '^_',
+						varsIgnorePattern: '^_',
+						caughtErrorsIgnorePattern: '^_'
+					}
+				],
 				'@typescript-eslint/no-unnecessary-condition': 'error',
 
 				'@typescript-eslint/consistent-type-imports': [
