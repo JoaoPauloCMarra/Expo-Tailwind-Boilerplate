@@ -23,6 +23,7 @@ const HomeScreen = () => {
 							placeholder="Post ID"
 							value={inputPostId ? String(inputPostId) : ''}
 							onChange={onIdInputChange}
+							onReturnPressed={console.log}
 						/>
 					</View>
 					<View className="flex w-full items-center">

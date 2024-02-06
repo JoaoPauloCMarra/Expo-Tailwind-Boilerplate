@@ -1,13 +1,10 @@
-import type { Ref } from 'react';
-import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Pressable } from 'react-native';
+import { Pressable, type PressableProps } from 'react-native';
 import { cn } from '@/lib/utils';
 import Text from './text';
-import type { View, PressableProps } from 'react-native';
 
 const buttonVariants = cva(
-	'flex shrink select-none items-center justify-center whitespace-nowrap rounded-md bg-transparent transition-colors duration-150',
+	'z-10 flex shrink select-none items-center justify-center whitespace-nowrap rounded-md bg-transparent transition-colors duration-150',
 	{
 		variants: {
 			variant: {
@@ -72,15 +69,12 @@ type Props = PressableProps &
 		children: string | JSX.Element;
 	};
 
-const Button = forwardRef(
-	({ children, variant, size, className, ...props }: Props, ref: Ref<View>) => {
-		return (
-			<Pressable {...props} className={cn(buttonVariants({ variant, size, className }))} ref={ref}>
-				<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{children}</Text>
-			</Pressable>
-		);
-	}
-);
-Button.displayName = 'Button';
+const Button = ({ children, variant, size, className, ...props }: Props) => {
+	return (
+		<Pressable {...props} className={cn(buttonVariants({ variant, size, className }))}>
+			<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{children}</Text>
+		</Pressable>
+	);
+};
 
 export default Button;

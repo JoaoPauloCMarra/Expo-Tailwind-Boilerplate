@@ -26,6 +26,7 @@ const useHomePage = () => {
 	}, []);
 
 	const onApiCallPress = useCallback(() => {
+		console.log({ inputPostId });
 		if (!inputPostId) return;
 		fetchPosts();
 	}, [fetchPosts, inputPostId]);

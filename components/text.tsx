@@ -1,5 +1,3 @@
-import type { Ref } from 'react';
-import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { Text as RNText } from 'react-native';
 import { cn } from '@/lib/utils';
@@ -35,16 +33,14 @@ export type Props = TextProps &
 		textProps?: TextProps;
 	};
 
-const Text = forwardRef(({ variant, size, className, ...props }: Props, ref: Ref<RNText>) => {
+const Text = ({ variant, size, className, ...props }: Props) => {
 	return (
 		<RNText
 			{...props}
 			style={{ fontFamily: 'Inter_400Regular' }}
 			className={cn(textVariants({ variant, size, className }))}
-			ref={ref}
 		/>
 	);
-});
-Text.displayName = 'Text';
+};
 
 export default Text;

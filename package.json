@@ -5,6 +5,7 @@
 	"private": true,
 	"scripts": {
 		"start": "expo start",
+		"start:c": "watchman watch-del-all & watchman shutdown-server && expo start -c",
 		"android": "expo run:android",
 		"ios": "expo run:ios",
 		"web": "expo start --web",
@@ -26,6 +27,7 @@
 	},
 	"dependencies": {
 		"@expo-google-fonts/inter": "^0.2.3",
+		"@expo/html-elements": "^0.9.1",
 		"@expo/vector-icons": "^14.0.0",
 		"@react-native-community/netinfo": "11.1.0",
 		"@react-navigation/native": "^6.1.9",
@@ -56,6 +58,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.9",
+		"@babel/plugin-proposal-export-namespace-from": "^7.18.9",
 		"@babel/plugin-transform-export-namespace-from": "^7.23.4",
 		"@expo/webpack-config": "~19.0.1",
 		"@tanstack/eslint-plugin-query": "^5.18.1",

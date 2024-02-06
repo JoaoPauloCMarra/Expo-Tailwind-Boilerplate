@@ -9,7 +9,7 @@ const ErrorBoundary = (props: ErrorBoundaryProps) => (
 		<Text variant="destructive" size="2xl">
 			{props.error.message}
 		</Text>
-		<View className="pt-8">
+		<View className="flex items-center justify-center pt-8">
 			<Button onPress={props.retry} variant="destructive" size="lg">
 				<Text>Retry</Text>
 			</Button>

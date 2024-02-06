@@ -1,13 +1,23 @@
-import type { Ref } from 'react';
+import type { KeyboardEvent, Ref } from 'react';
 import { forwardRef, useState } from 'react';
 import { TextInput } from 'react-native';
+import { isWeb } from '@/lib/constants';
 import { cn } from '../lib/utils';
-import type { TextInputProps } from 'react-native';
+import type {
+	NativeSyntheticEvent,
+	TextInputEndEditingEventData,
+	TextInputKeyPressEventData,
+	TextInputProps
+} from 'react-native';
 
 type UseInputProps = {
 	keyboardType?: TextInputProps['keyboardType'];
 	defaultValue?: string;
 };
+
+type TextInputKeyPressEvent = NativeSyntheticEvent<TextInputKeyPressEventData> &
+	KeyboardEvent<HTMLInputElement>;
+type TextInputEndEditingEvent = NativeSyntheticEvent<TextInputEndEditingEventData>;
 
 const useInput = ({ defaultValue = '', keyboardType = 'default' }: UseInputProps) => {
 	const [value, setValue] = useState(defaultValue);
@@ -27,9 +37,26 @@ const useInput = ({ defaultValue = '', keyboardType = 'default' }: UseInputProps
 	return { value, onChangeText };
 };
 
-const Input = forwardRef((props: TextInputProps, ref: Ref<TextInput>) => {
-	const { className, defaultValue, keyboardType } = props;
+type Props = TextInputProps & {
+	onReturnPressed?: (value: string) => void;
+};
+
+const Input = forwardRef((props: Props, ref: Ref<TextInput>) => {
+	const { className, defaultValue, keyboardType, onReturnPressed } = props;
 	const { value, onChangeText } = useInput({ defaultValue, keyboardType });
+
+	const onKeyPress = (e: TextInputKeyPressEvent) => {
+		if (isWeb && e.key === 'Enter' && onReturnPressed) {
+			e.preventDefault();
+			onReturnPressed(value);
+		}
+	};
+	const onEndEditing = (e: TextInputEndEditingEvent) => {
+		if (!isWeb && onReturnPressed) {
+			e.preventDefault();
+			onReturnPressed(value);
+		}
+	};
 
 	return (
 		<TextInput
@@ -41,6 +68,8 @@ const Input = forwardRef((props: TextInputProps, ref: Ref<TextInput>) => {
 			)}
 			value={value}
 			onChangeText={onChangeText}
+			onKeyPress={(e) => onKeyPress(e as TextInputKeyPressEvent)}
+			onEndEditing={(e) => onEndEditing(e as TextInputEndEditingEvent)}
 		/>
 	);
 });
