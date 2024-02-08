@@ -6,6 +6,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react-query';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { Provider as JotaiProvider } from 'jotai';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export { default as ErrorBoundary } from '@/components/error-boundary';
@@ -39,23 +40,25 @@ const RootLayout = () => {
 
 	return (
 		<SafeAreaProvider onLayout={onLayoutRootView}>
-			<StatusBar
-				animated
-				backgroundColor="#0f0f0f"
-				networkActivityIndicatorVisible
-				translucent
-				style="light"
-			/>
 			<QueryClientProvider client={queryClient}>
-				<Stack
-					initialRouteName="/"
-					screenOptions={{
-						headerShown: false,
-						contentStyle: {
-							backgroundColor: '#0f0f0f'
-						}
-					}}
-				/>
+				<JotaiProvider>
+					<StatusBar
+						animated
+						backgroundColor="transparent"
+						networkActivityIndicatorVisible
+						translucent
+						style="auto"
+					/>
+					<Stack
+						initialRouteName="/"
+						screenOptions={{
+							headerShown: false,
+							contentStyle: {
+								backgroundColor: 'transparent'
+							}
+						}}
+					/>
+				</JotaiProvider>
 			</QueryClientProvider>
 		</SafeAreaProvider>
 	);

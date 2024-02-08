@@ -27,7 +27,11 @@ const colorPalette = {
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+	content: [
+		'./app/**/*.{js,jsx,ts,tsx}',
+		'./components/**/*.{js,jsx,ts,tsx}',
+		'./modules/**/*.{js,jsx,ts,tsx}'
+	],
 	darkMode: 'class',
 	presets: [require('nativewind/preset')({ gapPolyfill: false })],
 	theme: {

@@ -13,6 +13,7 @@
 - Playwright e2e test (soon...)
 - Jest unit test
 
+- Jotai
 - React Hook Form (soon...)
 - Zod (soon...)
 

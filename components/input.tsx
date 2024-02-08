@@ -22,19 +22,20 @@ type TextInputEndEditingEvent = NativeSyntheticEvent<TextInputEndEditingEventDat
 const useInput = ({ defaultValue = '', keyboardType = 'default' }: UseInputProps) => {
 	const [value, setValue] = useState(defaultValue);
 
-	const onChangeText: (text: string) => void = (text) => {
+	const onChange = (value: string): string => {
 		if (
 			['numeric', 'number-pad', 'numbers-and-punctuation', 'phone-pad', 'decimal-pad'].includes(
 				keyboardType
 			)
 		) {
-			if (isNaN(Number(text.replace(/,/g, '')))) return;
+			if (isNaN(Number(value.replace(/,/g, '')))) return '';
 		}
 
-		setValue(text);
+		setValue(value);
+		return value || '';
 	};
 
-	return { value, onChangeText };
+	return { value, onChange };
 };
 
 type Props = TextInputProps & {
@@ -43,7 +44,7 @@ type Props = TextInputProps & {
 
 const Input = forwardRef((props: Props, ref: Ref<TextInput>) => {
 	const { className, defaultValue, keyboardType, onReturnPressed } = props;
-	const { value, onChangeText } = useInput({ defaultValue, keyboardType });
+	const { value, onChange } = useInput({ defaultValue, keyboardType });
 
 	const onKeyPress = (e: TextInputKeyPressEvent) => {
 		if (isWeb && e.key === 'Enter' && onReturnPressed) {
@@ -51,11 +52,16 @@ const Input = forwardRef((props: Props, ref: Ref<TextInput>) => {
 			onReturnPressed(value);
 		}
 	};
+
 	const onEndEditing = (e: TextInputEndEditingEvent) => {
 		if (!isWeb && onReturnPressed) {
 			e.preventDefault();
 			onReturnPressed(value);
 		}
+	};
+
+	const onChangeText = (nextValue: string) => {
+		props.onChangeText?.(onChange(nextValue));
 	};
 
 	return (

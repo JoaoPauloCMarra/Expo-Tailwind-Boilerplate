@@ -1,19 +1,23 @@
+import type { Ref } from 'react';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Pressable, type PressableProps } from 'react-native';
+import { Pressable } from 'react-native';
+import { defaultHitSlop } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import Text from './text';
+import type { PressableProps, View } from 'react-native';
 
 const buttonVariants = cva(
-	'z-10 flex shrink select-none items-center justify-center whitespace-nowrap rounded-md bg-transparent transition-colors duration-150',
+	'z-10 flex shrink select-none items-center justify-center whitespace-nowrap rounded-md bg-transparent',
 	{
 		variants: {
 			variant: {
-				default: 'bg-primary hover:bg-primary/80',
-				secondary: 'bg-secondary hover:bg-secondary/80',
-				successful: 'bg-successful hover:bg-successful/80',
-				destructive: 'bg-destructive hover:bg-destructive/80',
+				default: 'bg-primary',
+				secondary: 'bg-secondary',
+				successful: 'bg-successful',
+				destructive: 'bg-destructive',
 				outline: 'border border-primary bg-background',
-				ghost: 'border-0 hover:bg-primary/80',
+				ghost: 'border-0',
 				link: 'border-0'
 			},
 			size: {
@@ -51,10 +55,10 @@ function applyTextClassNamesByVariant(
 		classNames.push('text-primary');
 	}
 	if (variant === 'ghost') {
-		classNames.push('text-foreground hover:text-background');
+		classNames.push('text-foreground');
 	}
 	if (variant === 'link') {
-		classNames.push('text-foreground underline-offset-4 underline-foreground hover:underline');
+		classNames.push('text-foreground underline-offset-4 underline-foreground underline');
 	}
 
 	if (!size || size === 'default') {
@@ -66,15 +70,21 @@ function applyTextClassNamesByVariant(
 
 type Props = PressableProps &
 	VariantProps<typeof buttonVariants> & {
-		children: string | JSX.Element;
+		children: string;
 	};
 
-const Button = ({ children, variant, size, className, ...props }: Props) => {
-	return (
-		<Pressable {...props} className={cn(buttonVariants({ variant, size, className }))}>
-			<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{children}</Text>
+const Button = forwardRef(
+	({ children, variant, size, className, ...props }: Props, ref: Ref<View>) => (
+		<Pressable
+			{...props}
+			ref={ref}
+			className={cn(buttonVariants({ variant, size, className }))}
+			hitSlop={defaultHitSlop}
+		>
+			<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{String(children)}</Text>
 		</Pressable>
-	);
-};
+	)
+);
+Button.displayName = 'Button';
 
 export default Button;
