@@ -7,7 +7,8 @@ import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Provider as JotaiProvider } from 'jotai';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 export { default as ErrorBoundary } from '@/components/error-boundary';
 
@@ -42,22 +43,26 @@ const RootLayout = () => {
 		<SafeAreaProvider onLayout={onLayoutRootView}>
 			<QueryClientProvider client={queryClient}>
 				<JotaiProvider>
-					<StatusBar
-						animated
-						backgroundColor="transparent"
-						networkActivityIndicatorVisible
-						translucent
-						style="auto"
-					/>
-					<Stack
-						initialRouteName="/"
-						screenOptions={{
-							headerShown: false,
-							contentStyle: {
-								backgroundColor: 'transparent'
-							}
-						}}
-					/>
+					<View className="size-full flex-1 bg-background">
+						<StatusBar
+							animated
+							backgroundColor="transparent"
+							networkActivityIndicatorVisible
+							translucent
+							style="dark"
+						/>
+						<SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+							<Stack
+								initialRouteName="/"
+								screenOptions={{
+									headerShown: false,
+									contentStyle: {
+										backgroundColor: 'transparent'
+									}
+								}}
+							/>
+						</SafeAreaView>
+					</View>
 				</JotaiProvider>
 			</QueryClientProvider>
 		</SafeAreaProvider>

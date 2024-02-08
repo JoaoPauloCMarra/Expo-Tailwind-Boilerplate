@@ -24,7 +24,7 @@
 
 `brew install --HEAD watchman`
 
-`gem install cocoapods --no-document --user-install`
+`gem install cocoapods@1.15.2 --no-document --user-install`
 
 ### Expo Guides for ios and android
 

@@ -42,6 +42,9 @@ const HomeScreen = () => {
 							<Button onPress={() => router.replace('/demo-form/')} variant="secondary">
 								Try the demo form
 							</Button>
+							<Button onPress={() => router.replace('/camera/')} variant="secondary">
+								Try the Camera demo
+							</Button>
 						</View>
 						<ScrollView className="max-h-80 w-full flex-1">
 							{postsAreFetching ? <Text>loading...</Text> : null}
