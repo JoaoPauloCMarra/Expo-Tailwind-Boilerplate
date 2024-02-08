@@ -1,8 +1,11 @@
-import { useState } from 'react';
-import { Camera, CameraType } from 'expo-camera';
+import { useRef, useState } from 'react';
+import { Camera, CameraType, ImageType } from 'expo-camera';
+import { isDevice } from 'expo-device';
 import { Link } from 'expo-router';
 import { ActivityIndicator, View } from 'react-native';
+import { vibrate } from '@/lib/utils';
 import Button from '@/components/button';
+import ErrorBoundary from '@/components/error-boundary';
 import PageContainer from '@/components/page-container';
 import Text from '@/components/text';
 
@@ -10,9 +13,27 @@ const DemoCamera = () => {
 	const [cameraReady, setCameraReady] = useState(false);
 	const [type, setType] = useState(CameraType.back);
 	const [permission, requestPermission] = Camera.useCameraPermissions();
+	const cameraRef = useRef<Camera>(null);
+
+	if (!isDevice) {
+		return <ErrorBoundary error={Error('This screen only works on a real device')} />;
+	}
 
 	function toggleCameraType() {
+		vibrate();
 		setType((current) => (current === CameraType.back ? CameraType.front : CameraType.back));
+	}
+
+	function snapPhoto() {
+		if (!cameraRef.current) return;
+		vibrate();
+		cameraRef.current.takePictureAsync({
+			imageType: ImageType.jpg,
+			quality: 1,
+			onPictureSaved(picture) {
+				console.log('Picture saved', picture);
+			}
+		});
 	}
 
 	if (permission?.status !== 'granted') {
@@ -39,13 +60,17 @@ const DemoCamera = () => {
 						</View>
 					) : null}
 					<Camera
+						ref={cameraRef}
 						type={type}
 						onCameraReady={() => setCameraReady(true)}
 						style={{ flex: 1, width: '100%', height: '100%', opacity: cameraReady ? 1 : 0 }}
 					>
-						<View className="absolute bottom-1 right-1">
+						<View className="absolute bottom-1 right-1 gap-4">
 							<Button onPress={toggleCameraType} variant="secondary">
 								Flip Camera
+							</Button>
+							<Button onPress={snapPhoto} variant="secondary">
+								Snap Photo
 							</Button>
 						</View>
 					</Camera>

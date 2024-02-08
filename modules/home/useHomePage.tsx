@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { getSampleText } from '@/lib/stores';
+import { vibrate } from '@/lib/utils';
 
 const useHomePage = () => {
 	const [inputPostId, setPostId] = useState<Post['id'] | 0>(0);
@@ -25,7 +26,8 @@ const useHomePage = () => {
 		enabled: false,
 		refetchOnMount: false,
 		refetchOnReconnect: false,
-		refetchOnWindowFocus: false
+		refetchOnWindowFocus: false,
+		initialData: { id: 0, title: '', userId: 0, body: '' }
 	});
 
 	const onIdInputChange = useCallback((value: string) => {
@@ -35,7 +37,8 @@ const useHomePage = () => {
 	}, []);
 
 	const onApiCallPress = async () => {
-		if (!inputPostId && inputPostId > 0) return;
+		if (!inputPostId || inputPostId <= 0) return;
+		vibrate();
 		await fetchPosts();
 	};
 

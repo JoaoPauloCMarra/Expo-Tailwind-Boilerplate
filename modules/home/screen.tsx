@@ -1,3 +1,4 @@
+import { isDevice } from 'expo-device';
 import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import Button from '@/components/button';
@@ -24,6 +25,7 @@ const HomeScreen = () => {
 			<PageContainer>
 				<View className="mx-auto w-full flex-1 items-center justify-center px-8">
 					<Text size="2xl">Onboarding</Text>
+					<Text size="2xl">{`Onboarding is a real device? ${isDevice ? 'yes' : 'no'}`}</Text>
 					<Text size="lg">{String(sampleText)}</Text>
 					<View className="mt-2 size-32 bg-foreground" />
 					<View className="w-full max-w-64 py-4">
@@ -52,7 +54,7 @@ const HomeScreen = () => {
 						<ScrollView className="max-h-80 w-full flex-1">
 							{postsAreFetching ? <Text>loading...</Text> : null}
 							{postsError ? <Text>{JSON.stringify(postsError, null, 2)}</Text> : null}
-							{postsData ? (
+							{postsData.id ? (
 								<View key={postsData.id} className="my-2 rounded-lg border px-2 py-1">
 									<Text>{postsData.title}</Text>
 								</View>

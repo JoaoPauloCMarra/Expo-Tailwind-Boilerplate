@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { isDevice } from 'expo-device';
 import * as ImagePicker from 'expo-image-picker';
 import { Link } from 'expo-router';
 import { Image, View } from 'react-native';
+import { vibrate } from '@/lib/utils';
 import Button from '@/components/button';
+import ErrorBoundary from '@/components/error-boundary';
 import PageContainer from '@/components/page-container';
 import Text from '@/components/text';
 
@@ -10,14 +13,19 @@ const DemoImagePicker = () => {
 	const [image, setImage] = useState<string | null>(null);
 	const [permission, requestPermission] = ImagePicker.useCameraPermissions();
 
+	if (!isDevice) {
+		return <ErrorBoundary error={Error('This screen only works on a real device')} />;
+	}
+
 	if (!permission?.granted) {
 		requestPermission();
 	}
 
 	const pickImage = async () => {
+		vibrate();
 		setImage(null);
 		const result = await ImagePicker.launchImageLibraryAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.All,
+			mediaTypes: ImagePicker.MediaTypeOptions.Images,
 			allowsEditing: true,
 			aspect: [4, 3],
 			quality: 1

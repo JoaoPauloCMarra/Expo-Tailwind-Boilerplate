@@ -44,6 +44,7 @@ module.exports = {
 					}
 				],
 				'@typescript-eslint/no-unnecessary-condition': 'error',
+				'@typescript-eslint/no-var-requires': 'off',
 
 				'@typescript-eslint/consistent-type-imports': [
 					'error',

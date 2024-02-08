@@ -4,7 +4,11 @@ import { View } from 'react-native';
 import Button from './button';
 import Text from './text';
 
-const ErrorBoundary = (props: ErrorBoundaryProps) => (
+type Props = Omit<ErrorBoundaryProps, 'retry'> & {
+	retry?: ErrorBoundaryProps['retry'];
+};
+
+const ErrorBoundary = (props: Props) => (
 	<View className="flex-1 items-center justify-center">
 		<Text variant="destructive" size="2xl">
 			{String(props.error.message)}
