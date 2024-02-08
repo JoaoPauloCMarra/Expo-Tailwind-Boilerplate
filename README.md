@@ -10,7 +10,6 @@
 - Prettier
 - Eslint
 
-- Playwright e2e test (soon...)
 - Jest unit test
 
 - Jotai

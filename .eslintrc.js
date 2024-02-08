@@ -14,6 +14,7 @@ module.exports = {
 				'plugin:@tanstack/eslint-plugin-query/recommended',
 				'plugin:jsx-a11y/recommended',
 				'plugin:react-hooks/recommended',
+				'plugin:react-hook-form/recommended',
 				'plugin:tailwindcss/recommended',
 				'plugin:prettier/recommended'
 			],

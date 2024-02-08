@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import Button from '@/components/button';
 import Input from '@/components/input';
@@ -38,6 +39,9 @@ const HomeScreen = () => {
 					<View className="flex w-full flex-1 items-center">
 						<View className="flex flex-col gap-4">
 							<Button onPress={onApiCallPress}>{`API Call for ${String(inputPostId)}`}</Button>
+							<Button onPress={() => router.replace('/demo-form/')} variant="secondary">
+								Try the demo form
+							</Button>
 						</View>
 						<ScrollView className="max-h-80 w-full flex-1">
 							{postsAreFetching ? <Text>loading...</Text> : null}
