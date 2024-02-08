@@ -15,7 +15,11 @@
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.boilerplate.jpcm"
+			"bundleIdentifier": "com.boilerplate.jpcm",
+			"infoPlist": {
+				"NSCameraUsageDescription": "NSCameraUsageDescription",
+				"NSMicrophoneUsageDescription": "NSMicrophoneUsageDescription"
+			}
 		},
 		"android": {
 			"adaptiveIcon": {
@@ -36,7 +40,14 @@
 			[
 				"expo-camera",
 				{
-					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+					"cameraPermission": "Allow $(PRODUCT_NAME) to access your camera.",
+					"microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone"
+				}
+			],
+			[
+				"expo-image-picker",
+				{
+					"photosPermission": "Allow $(PRODUCT_NAME) to access your photos"
 				}
 			]
 		],

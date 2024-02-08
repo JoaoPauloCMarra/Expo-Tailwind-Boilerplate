@@ -45,6 +45,9 @@ const HomeScreen = () => {
 							<Button onPress={() => router.replace('/camera/')} variant="secondary">
 								Try the Camera demo
 							</Button>
+							<Button onPress={() => router.replace('/image-picker/')} variant="secondary">
+								Try the Image Picker demo
+							</Button>
 						</View>
 						<ScrollView className="max-h-80 w-full flex-1">
 							{postsAreFetching ? <Text>loading...</Text> : null}

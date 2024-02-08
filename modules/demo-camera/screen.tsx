@@ -23,7 +23,7 @@ const DemoCamera = () => {
 		<PageContainer>
 			<View className="mx-auto w-full items-center justify-center px-8">
 				<Text className="mb-4 text-2xl font-bold">
-					{`Demo Form | Permission: ${permission?.status}`}
+					{`Camera Demo | Permission: ${permission?.status}`}
 				</Text>
 				<Link href="/" asChild>
 					<Button variant="outline" size="lg">
