@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Camera, CameraType, ImageType } from 'expo-camera';
 import { isDevice } from 'expo-device';
 import { Link } from 'expo-router';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, Image, View } from 'react-native';
 import { vibrate } from '@/lib/utils';
 import Button from '@/components/button';
 import ErrorBoundary from '@/components/error-boundary';
@@ -12,6 +12,7 @@ import Text from '@/components/text';
 const DemoCamera = () => {
 	const [cameraReady, setCameraReady] = useState(false);
 	const [type, setType] = useState(CameraType.back);
+	const [picture, setPicture] = useState<string | null>(null);
 	const [permission, requestPermission] = Camera.useCameraPermissions();
 	const cameraRef = useRef<Camera>(null);
 
@@ -30,9 +31,7 @@ const DemoCamera = () => {
 		cameraRef.current.takePictureAsync({
 			imageType: ImageType.jpg,
 			quality: 1,
-			onPictureSaved(picture) {
-				console.log('Picture saved', picture);
-			}
+			onPictureSaved: ({ uri }) => setPicture(uri)
 		});
 	}
 
@@ -63,8 +62,25 @@ const DemoCamera = () => {
 						ref={cameraRef}
 						type={type}
 						onCameraReady={() => setCameraReady(true)}
-						style={{ flex: 1, width: '100%', height: '100%', opacity: cameraReady ? 1 : 0 }}
+						style={{
+							flex: 1,
+							width: '100%',
+							height: '100%',
+							opacity: cameraReady ? 1 : 0
+						}}
 					>
+						{picture ? (
+							<View className="relative size-full bg-black/50">
+								<View className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border-2 border-primary">
+									<View className="size-80 bg-background shadow">
+										<Image source={{ uri: picture }} className="size-full" resizeMode="cover" />
+										<View className="absolute right-1 top-1">
+											<Button onPress={() => setPicture(null)}>close</Button>
+										</View>
+									</View>
+								</View>
+							</View>
+						) : null}
 						<View className="absolute bottom-1 right-1 gap-4">
 							<Button onPress={toggleCameraType} variant="secondary">
 								Flip Camera
