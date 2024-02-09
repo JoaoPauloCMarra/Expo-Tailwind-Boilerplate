@@ -1,10 +1,10 @@
-import * as SecureStore from 'expo-secure-store';
+import { getItemAsync, setItemAsync } from 'expo-secure-store';
 
 export async function secureSave(key: string, value: string) {
-	await SecureStore.setItemAsync(key, value);
+	await setItemAsync(key, value);
 }
 
 export async function secureGet(key: string) {
-	const result = await SecureStore.getItemAsync(key);
+	const result = await getItemAsync(key);
 	return result;
 }

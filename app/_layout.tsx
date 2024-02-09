@@ -8,7 +8,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Provider as JotaiProvider } from 'jotai';
 import { View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export { default as ErrorBoundary } from '@/components/error-boundary';
 
@@ -51,17 +51,15 @@ const RootLayout = () => {
 							translucent
 							style="dark"
 						/>
-						<SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-							<Stack
-								initialRouteName="/"
-								screenOptions={{
-									headerShown: false,
-									contentStyle: {
-										backgroundColor: 'transparent'
-									}
-								}}
-							/>
-						</SafeAreaView>
+						<Stack
+							initialRouteName="/"
+							screenOptions={{
+								headerShown: false,
+								contentStyle: {
+									backgroundColor: 'transparent'
+								}
+							}}
+						/>
 					</View>
 				</JotaiProvider>
 			</QueryClientProvider>

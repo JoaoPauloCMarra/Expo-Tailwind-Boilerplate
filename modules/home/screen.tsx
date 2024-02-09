@@ -41,14 +41,23 @@ const HomeScreen = () => {
 					<View className="flex w-full flex-1 items-center">
 						<View className="flex flex-col gap-4">
 							<Button onPress={onApiCallPress}>{`API Call for ${String(inputPostId)}`}</Button>
-							<Button onPress={() => router.replace('/demo-form/')} variant="secondary">
+							<Button onPress={() => router.replace('/404/')} variant="destructive">
+								Try the 404 page
+							</Button>
+							<Button onPress={() => router.replace('/error/')} variant="destructive">
+								Try the error page
+							</Button>
+							<Button onPress={() => router.replace('/form/')} variant="secondary">
 								Try the demo form
 							</Button>
-							<Button onPress={() => router.replace('/camera/')} variant="secondary">
+							<Button onPress={() => router.replace('/camera/')} variant="successful">
 								Try the Camera demo
 							</Button>
-							<Button onPress={() => router.replace('/image-picker/')} variant="secondary">
+							<Button onPress={() => router.replace('/image-picker/')} variant="successful">
 								Try the Image Picker demo
+							</Button>
+							<Button onPress={() => router.replace('/sheet-and-tabs/')} variant="outline">
+								Try the Sheet and Tabs demo
 							</Button>
 						</View>
 						<ScrollView className="max-h-80 w-full flex-1">
