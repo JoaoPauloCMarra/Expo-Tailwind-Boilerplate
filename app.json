@@ -35,6 +35,7 @@
 			"favicon": "./assets/images/favicon.png"
 		},
 		"plugins": [
+			"expo-localization",
 			"expo-router",
 			"expo-font",
 			"expo-secure-store",
@@ -50,7 +51,8 @@
 				{
 					"photosPermission": "Allow $(PRODUCT_NAME) to access your photos"
 				}
-			]
+			],
+			"expo-localization"
 		],
 		"experiments": {
 			"typedRoutes": true

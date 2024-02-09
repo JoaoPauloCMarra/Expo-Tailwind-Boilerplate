@@ -6,9 +6,11 @@ import Input from '@/components/input';
 import KeyBoardAvoidContainer from '@/components/keyboard-avoid-container';
 import PageContainer from '@/components/page-container';
 import Text from '@/components/text';
+import useTranslations from '@/hooks/use-translations';
 import useHomePage from './useHomePage';
 
 const HomeScreen = () => {
+	const { locale, t } = useTranslations();
 	const {
 		sampleText,
 		inputPostId,
@@ -16,6 +18,7 @@ const HomeScreen = () => {
 		postsError,
 		postsAreFetching,
 
+		onSwitchLocale,
 		onIdInputChange,
 		onApiCallPress
 	} = useHomePage();
@@ -25,7 +28,24 @@ const HomeScreen = () => {
 			<PageContainer>
 				<View className="mx-auto w-full flex-1 items-center justify-center px-8">
 					<Text size="2xl">Onboarding</Text>
-					<Text size="2xl">{`Onboarding is a real device? ${isDevice ? 'yes' : 'no'}`}</Text>
+					<View>
+						<Text size="lg">{t('General.appName')}</Text>
+						<View className="flex-row justify-center gap-4">
+							<Button
+								variant={locale === 'en' ? 'default' : 'secondary'}
+								onPress={() => onSwitchLocale('en')}
+							>
+								EN
+							</Button>
+							<Button
+								variant={locale === 'pt' ? 'default' : 'secondary'}
+								onPress={() => onSwitchLocale('pt')}
+							>
+								PT
+							</Button>
+						</View>
+					</View>
+					<Text size="lg">{`Is this a real device? ${isDevice ? 'yes' : 'no'}`}</Text>
 					<Text size="lg">{String(sampleText)}</Text>
 					<View className="mt-2 size-32 bg-foreground" />
 					<View className="w-full max-w-64 py-4">
