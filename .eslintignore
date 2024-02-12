@@ -1,5 +1,11 @@
 /.expo
-node_modules
-android
-ios
-assets
+/.github
+/.husky
+/.vscode
+/android
+/assets
+/dist
+/ios
+/node_modules
+/public
+/translations

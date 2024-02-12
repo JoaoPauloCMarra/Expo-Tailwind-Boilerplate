@@ -1,4 +1,4 @@
-rootProject.name = 'expo-boilerplate'
+rootProject.name = 'Expo Boilerplate'
 
 dependencyResolutionManagement {
   versionCatalogs {

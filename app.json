@@ -1,13 +1,15 @@
 {
 	"expo": {
-		"name": "expo-boilerplate",
+		"name": "Expo Boilerplate",
 		"slug": "expo-boilerplate",
 		"scheme": "expo-boilerplate",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
 		"userInterfaceStyle": "automatic",
-		"primarycolor": "red",
+		"primarycolor": "#60A5FA",
+		"jsEngine": "hermes",
+		"platforms": ["ios", "android", "web"],
 		"splash": {
 			"image": "./assets/images/splash.png",
 			"resizeMode": "contain",
@@ -31,7 +33,6 @@
 		},
 		"web": {
 			"bundler": "metro",
-			"output": "server",
 			"favicon": "./assets/images/favicon.png"
 		},
 		"plugins": [
