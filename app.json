@@ -36,9 +36,17 @@
 			"favicon": "./assets/images/favicon.png"
 		},
 		"plugins": [
-			"expo-localization",
-			"expo-router",
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"flipper": true
+					}
+				}
+			],
 			"expo-font",
+			"expo-router",
+			"expo-localization",
 			"expo-secure-store",
 			[
 				"expo-camera",
@@ -52,8 +60,7 @@
 				{
 					"photosPermission": "Allow $(PRODUCT_NAME) to access your photos"
 				}
-			],
-			"expo-localization"
+			]
 		],
 		"experiments": {
 			"typedRoutes": true
