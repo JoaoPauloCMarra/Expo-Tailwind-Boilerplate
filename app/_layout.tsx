@@ -15,7 +15,6 @@ import type { Locale } from '@/lib/constants';
 import { loadLocale } from '@/lib/i18n';
 import Text from '@/components/text';
 import useTranslations from '@/hooks/use-translations';
-
 export { default as ErrorBoundary } from '@/components/error-boundary';
 
 SplashScreen.preventAutoHideAsync();

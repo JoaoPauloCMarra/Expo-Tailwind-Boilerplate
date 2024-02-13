@@ -33,7 +33,8 @@ const config = {
 		'./modules/**/*.{js,jsx,ts,tsx}'
 	],
 	darkMode: 'class',
-	presets: [require('nativewind/preset')({ gapPolyfill: false })],
+	presets: [require('nativewind/preset')],
+	// presets: [require('nativewind/preset')({ gapPolyfill: false })],
 	theme: {
 		fontFamily: {
 			sans: ['Inter_400Regular', ...fontFamily.sans]
