@@ -2,6 +2,7 @@ import { isDevice } from 'expo-device';
 import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import Button from '@/components/button';
+import ThunderIcon from '@/components/icons/thunder-icon';
 import Input from '@/components/input';
 import KeyBoardAvoidContainer from '@/components/keyboard-avoid-container';
 import PageContainer from '@/components/page-container';
@@ -47,7 +48,10 @@ const HomeScreen = () => {
 					</View>
 					<Text size="lg">{`Is this a real device? ${isDevice ? 'yes' : 'no'}`}</Text>
 					<Text size="lg">{String(sampleText)}</Text>
-					<View className="mt-2 size-32 bg-foreground" />
+					<View className="mt-2 flex size-32 items-center justify-center gap-4 rounded-lg bg-slate-400">
+						<Text className="text-xs text-slate-800">svg rendered</Text>
+						<ThunderIcon className="ios:shadow-md android:shadow-md size-12 fill-amber-400 stroke-amber-500 web:drop-shadow-md" />
+					</View>
 					<View className="w-full max-w-64 py-4">
 						<Input
 							keyboardType="numeric"

@@ -22,6 +22,6 @@ export const componentPainter = <V, S>({
 		const sizeClassName = variants.size[size as keyof typeof variants.size];
 		return cn(`${base} ${variantClassName} ${sizeClassName}`);
 	} catch (e) {
-		console.log(e);
+		console.error(e);
 	}
 };

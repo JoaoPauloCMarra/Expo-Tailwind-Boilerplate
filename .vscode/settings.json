@@ -12,7 +12,7 @@
 		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	],
-	"tailwindCSS.classAttributes": ["class", "className", "classNames"],
+	"tailwindCSS.classAttributes": ["class", "className", "classNames", "containerClassName"],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.surveys.enabled": false,

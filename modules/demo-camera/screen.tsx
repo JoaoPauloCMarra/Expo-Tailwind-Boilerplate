@@ -71,7 +71,7 @@ const DemoCamera = () => {
 					>
 						{picture ? (
 							<View className="relative size-full bg-black/50">
-								<View className="absolute left-1/2 top-1/2 overflow-hidden rounded-lg border-2 border-primary -translate-x-1/2 -translate-y-1/2">
+								<View className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border-2 border-primary">
 									<View className="size-80 bg-background shadow">
 										<Image source={{ uri: picture }} className="size-full" resizeMode="cover" />
 										<View className="absolute right-1 top-1">
