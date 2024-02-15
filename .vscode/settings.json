@@ -12,7 +12,13 @@
 		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
 	],
-	"tailwindCSS.classAttributes": ["class", "className", "classNames", "containerClassName"],
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		"classNames",
+		"containerClassName",
+		"contentContainerClassName"
+	],
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.surveys.enabled": false,
@@ -22,6 +28,15 @@
 	"explorer.fileNesting.patterns": {
 		"*.ts": "$(capture).test.ts, $(capture).test.ts, $(capture).testids.ts",
 		"*.tsx": "$(capture).test.ts, $(capture).test.tsx, $(capture).testids.tsx"
+	},
+	"vsicons.associations.folders": [
+		{ "icon": "component", "extensions": ["_components"], "light": false },
+		{ "icon": "hook", "extensions": ["_hooks"], "light": false },
+		{ "icon": "locale", "extensions": ["_translations", "translations"], "light": false }
+	],
+	"files.associations": {
+		"*.ignore": "plaintext",
+		"*.txt": "plaintext"
 	},
 	"[dotenv]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"
@@ -40,10 +55,6 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"files.associations": {
-		"*.ignore": "plaintext",
-		"*.txt": "plaintext"
 	},
 	"[ignore]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"

@@ -15,7 +15,7 @@ const HomeScreen = () => {
 	const {
 		sampleText,
 		inputPostId,
-		postsData,
+		post,
 		postsError,
 		postsAreFetching,
 
@@ -25,8 +25,8 @@ const HomeScreen = () => {
 	} = useHomePage();
 
 	return (
-		<KeyBoardAvoidContainer>
-			<PageContainer>
+		<PageContainer>
+			<KeyBoardAvoidContainer contentContainerClassName="bg-background">
 				<View className="mx-auto w-full flex-1 items-center justify-center px-8">
 					<Text size="2xl">Onboarding</Text>
 					<View>
@@ -52,51 +52,80 @@ const HomeScreen = () => {
 						<Text className="text-xs text-slate-800">svg rendered</Text>
 						<ThunderIcon className="ios:shadow-md android:shadow-md size-12 fill-amber-400 stroke-amber-500 web:drop-shadow-md" />
 					</View>
-					<View className="w-full max-w-64 py-4">
-						<Input
-							keyboardType="numeric"
-							returnKeyType="done"
-							placeholder="Post ID"
-							value={inputPostId ? String(inputPostId) : ''}
-							onChangeText={onIdInputChange}
-							onReturnPressed={onApiCallPress}
-						/>
-					</View>
-					<View className="flex w-full flex-1 items-center">
-						<View className="flex flex-col gap-4">
-							<Button onPress={onApiCallPress}>{`API Call for ${String(inputPostId)}`}</Button>
-							<Button onPress={() => router.replace('/404/')} variant="destructive">
-								Try the 404 page
-							</Button>
-							<Button onPress={() => router.replace('/error/')} variant="destructive">
-								Try the error page
-							</Button>
-							<Button onPress={() => router.replace('/form/')} variant="secondary">
-								Try the demo form
-							</Button>
-							<Button onPress={() => router.replace('/camera/')} variant="successful">
-								Try the Camera demo
-							</Button>
-							<Button onPress={() => router.replace('/image-picker/')} variant="successful">
-								Try the Image Picker demo
-							</Button>
-							<Button onPress={() => router.replace('/sheet-and-tabs/')} variant="outline">
-								Try the Sheet and Tabs demo
-							</Button>
-						</View>
-						<ScrollView className="max-h-80 w-full flex-1">
+					<ScrollView className="min-h-20 w-full max-w-64 flex-1">
+						<View className="flex w-full max-w-64 gap-4 py-8">
+							<Input
+								keyboardType="numeric"
+								returnKeyType="done"
+								placeholder="Post ID"
+								value={inputPostId ? String(inputPostId) : ''}
+								onChangeText={onIdInputChange}
+								onReturnPressed={onApiCallPress}
+							/>
+							<Button
+								className="w-full"
+								onPress={onApiCallPress}
+							>{`API Call for ${String(inputPostId)}`}</Button>
 							{postsAreFetching ? <Text>loading...</Text> : null}
-							{postsError ? <Text>{JSON.stringify(postsError, null, 2)}</Text> : null}
-							{postsData.id ? (
-								<View key={postsData.id} className="my-2 rounded-lg border px-2 py-1">
-									<Text>{postsData.title}</Text>
+							{!postsAreFetching && postsError ? (
+								<Text>{JSON.stringify(postsError, null, 2)}</Text>
+							) : null}
+							{!postsAreFetching && post.id ? (
+								<View key={post.id} className="my-2 rounded-lg border px-2 py-1">
+									<Text>{post.title}</Text>
 								</View>
 							) : null}
-						</ScrollView>
-					</View>
+						</View>
+						<View className="flex w-full flex-1 items-center">
+							<View className="flex w-full max-w-64 flex-col gap-4">
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/404/')}
+									variant="destructive"
+								>
+									Try the 404 page
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/error/')}
+									variant="destructive"
+								>
+									Try the error page
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/form/')}
+									variant="secondary"
+								>
+									Try the demo form
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/camera/')}
+									variant="successful"
+								>
+									Try the Camera demo
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/image-picker/')}
+									variant="successful"
+								>
+									Try the Image Picker demo
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/sheet-and-tabs/')}
+									variant="outline"
+								>
+									Try the Sheet & Tabs demo
+								</Button>
+							</View>
+						</View>
+					</ScrollView>
 				</View>
-			</PageContainer>
-		</KeyBoardAvoidContainer>
+			</KeyBoardAvoidContainer>
+		</PageContainer>
 	);
 };
 

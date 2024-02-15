@@ -14,7 +14,7 @@ const useHomePage = () => {
 	const sampleText = useAtomValue(getSampleText);
 
 	const {
-		data: postsData,
+		data: post,
 		isFetching: postsAreFetching,
 		error: postsError,
 		refetch: fetchPosts
@@ -54,7 +54,7 @@ const useHomePage = () => {
 	return {
 		sampleText,
 		inputPostId,
-		postsData,
+		post,
 		postsError,
 		postsAreFetching,
 
