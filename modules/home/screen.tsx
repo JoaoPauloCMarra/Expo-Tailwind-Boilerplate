@@ -125,7 +125,7 @@ const HomeScreen = () => {
 									onPress={() => router.replace('/bottom-sheet/')}
 									variant="outline"
 								>
-									try the Bottom Sheet demo
+									Try the Bottom Sheet demo
 								</Button>
 							</View>
 						</View>
