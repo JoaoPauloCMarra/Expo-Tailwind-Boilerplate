@@ -21,11 +21,6 @@ const TabDemoTextScreen = () => {
 					ratione placeat magni quos veritatis sunt laboriosam voluptates quisquam reiciendis iure
 					architecto quidem quibusdam odio necessitatibus fugiat magnam dolore.
 				</Text>
-				<View>
-					<Link href="/sheet-and-tabs/modal" asChild>
-						<Button>Go to Modal</Button>
-					</Link>
-				</View>
 			</View>
 		</PageContainer>
 	);

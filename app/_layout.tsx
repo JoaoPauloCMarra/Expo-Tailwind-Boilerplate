@@ -10,6 +10,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Provider as JotaiProvider } from 'jotai';
 import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type { Locale } from '@/lib/constants';
 import { loadLocale } from '@/lib/i18n';
@@ -65,24 +66,26 @@ const RootLayout = () => (
 		<QueryClientProvider client={queryClient}>
 			<JotaiProvider>
 				<AppPreloader>
-					<View className="size-full flex-1 bg-background">
-						<StatusBar
-							animated
-							backgroundColor="transparent"
-							networkActivityIndicatorVisible
-							translucent
-							style="dark"
-						/>
-						<Stack
-							initialRouteName="/"
-							screenOptions={{
-								headerShown: false,
-								contentStyle: {
-									backgroundColor: 'transparent'
-								}
-							}}
-						/>
-					</View>
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<View className="size-full flex-1 bg-background">
+							<StatusBar
+								animated
+								backgroundColor="transparent"
+								networkActivityIndicatorVisible
+								translucent
+								style="dark"
+							/>
+							<Stack
+								initialRouteName="/"
+								screenOptions={{
+									headerShown: false,
+									contentStyle: {
+										backgroundColor: 'transparent'
+									}
+								}}
+							/>
+						</View>
+					</GestureHandlerRootView>
 				</AppPreloader>
 			</JotaiProvider>
 		</QueryClientProvider>

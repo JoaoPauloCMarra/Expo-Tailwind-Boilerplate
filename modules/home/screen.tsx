@@ -115,10 +115,17 @@ const HomeScreen = () => {
 								</Button>
 								<Button
 									className="w-full"
-									onPress={() => router.replace('/sheet-and-tabs/')}
+									onPress={() => router.replace('/tabs/')}
 									variant="outline"
 								>
-									Try the Sheet & Tabs demo
+									Try the Tabs demo
+								</Button>
+								<Button
+									className="w-full"
+									onPress={() => router.replace('/bottom-sheet/')}
+									variant="outline"
+								>
+									try the Bottom Sheet demo
 								</Button>
 							</View>
 						</View>
