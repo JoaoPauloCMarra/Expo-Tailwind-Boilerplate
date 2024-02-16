@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { Path, Svg } from '../SvgRenderer';
-import type { SvgProps } from '../SvgRenderer';
+import { Path, Svg } from '../svg-renderer';
+import type { SvgProps } from '../svg-renderer';
 
 const ThunderIcon = (props: SvgProps) => (
 	<Svg viewBox="0 0 24 24" {...props}>
