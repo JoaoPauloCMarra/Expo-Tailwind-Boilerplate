@@ -33,14 +33,12 @@ export type Props = TextProps &
 		textProps?: TextProps;
 	};
 
-const Text = ({ variant, size, className, ...props }: Props) => {
-	return (
-		<RNText
-			{...props}
-			style={{ fontFamily: 'Inter_400Regular' }}
-			className={cn(textVariants({ variant, size, className }))}
-		/>
-	);
-};
+const Text = ({ variant, size, className, ...props }: Props) => (
+	<RNText
+		{...props}
+		style={{ fontFamily: 'Inter_400Regular' }}
+		className={cn(textVariants({ variant, size, className }))}
+	/>
+);
 
 export default Text;

@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import type { PropsWithChildren } from 'react';
-import { cssInterop } from 'nativewind';
-import { Pressable } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
+import {
 	FadeIn,
 	FadeOut,
 	runOnJS,
@@ -16,6 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { cn } from '@/lib/utils';
+import { AnimatedPressable, AnimatedView } from './animated-components';
 
 type BottomSheetProps = PropsWithChildren & {
 	visible: boolean;
@@ -23,17 +22,6 @@ type BottomSheetProps = PropsWithChildren & {
 };
 
 const CLAMP = 20;
-const PressAnimated = Animated.createAnimatedComponent(Pressable);
-const Backdrop = cssInterop(PressAnimated, {
-	className: {
-		target: 'style'
-	}
-});
-const Content = cssInterop(Animated.View, {
-	className: {
-		target: 'style'
-	}
-});
 
 const BottomSheet = (props: BottomSheetProps) => {
 	const offset = useSharedValue(0);
@@ -77,14 +65,14 @@ const BottomSheet = (props: BottomSheetProps) => {
 
 	return (
 		<>
-			<Backdrop
+			<AnimatedPressable
 				onPress={props.onClose}
 				entering={FadeIn}
 				exiting={FadeOut}
 				className="absolute inset-0 z-10 bg-black/60"
 			/>
 			<GestureDetector gesture={panGesture}>
-				<Content
+				<AnimatedView
 					entering={SlideInDown.springify().damping(15)}
 					exiting={SlideOutDown}
 					className={cn(
@@ -97,7 +85,7 @@ const BottomSheet = (props: BottomSheetProps) => {
 					}}
 				>
 					{props.children}
-				</Content>
+				</AnimatedView>
 			</GestureDetector>
 		</>
 	);
