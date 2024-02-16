@@ -12,7 +12,7 @@ import { Provider as JotaiProvider } from 'jotai';
 import { View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import type { Locale } from '@/lib/constants';
+import { colorPalette, type Locale } from '@/lib/constants';
 import { loadLocale } from '@/lib/i18n';
 import Text from '@/components/text';
 import useTranslations from '@/hooks/use-translations';
@@ -67,24 +67,22 @@ const RootLayout = () => (
 			<JotaiProvider>
 				<AppPreloader>
 					<GestureHandlerRootView style={{ flex: 1 }}>
-						<View className="size-full flex-1 bg-background">
-							<StatusBar
-								animated
-								backgroundColor="transparent"
-								networkActivityIndicatorVisible
-								translucent
-								style="dark"
-							/>
-							<Stack
-								initialRouteName="/"
-								screenOptions={{
-									headerShown: false,
-									contentStyle: {
-										backgroundColor: 'transparent'
-									}
-								}}
-							/>
-						</View>
+						<StatusBar
+							animated
+							backgroundColor="transparent"
+							networkActivityIndicatorVisible
+							translucent
+							style="dark"
+						/>
+						<Stack
+							initialRouteName="/"
+							screenOptions={{
+								headerShown: false,
+								contentStyle: {
+									backgroundColor: colorPalette.background
+								}
+							}}
+						/>
 					</GestureHandlerRootView>
 				</AppPreloader>
 			</JotaiProvider>
