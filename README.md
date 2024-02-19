@@ -13,6 +13,7 @@
 - Jest unit test
 
 - Jotai
+- React Query
 - React Hook Form (soon...)
 - Zod (soon...)
 

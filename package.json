@@ -25,10 +25,12 @@
     "expo:upgrade": "expo install --fix",
     "format": "prettier . --write",
     "lint": "eslint . --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "bun expo:upgrade"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18",
+    "bun": ">=1"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.3",
