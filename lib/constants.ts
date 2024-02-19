@@ -13,7 +13,7 @@ export type Locale = (typeof SUPPORTED_LOCALES)[number];
 export type Dictionary = Record<string, Record<string, string>>;
 
 export const defaultHitSlop = { top: 10, right: 10, bottom: 10, left: 10 };
-export const StyleSheetShadows = {
+export const styleSheetShadows = {
 	large: {
 		shadowColor: '#000',
 		shadowOffset: {
@@ -26,6 +26,7 @@ export const StyleSheetShadows = {
 		elevation: 24
 	}
 };
+export const backdropBgColor = 'rgba(0,0,0,0.4)';
 
 /**
  * Update this object to change the color palette of the app.

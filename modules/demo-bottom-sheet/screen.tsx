@@ -29,12 +29,12 @@ const DemoBottomSheet = () => {
 
 			<BottomSheet visible={showModal} onClose={() => setShowModal(false)}>
 				<View className="flex-1 items-center justify-center">
-					<View className="pb-8">
-						<Button onPress={() => setShowModal(false)}>Close</Button>
-					</View>
 					<Text className="text-lg font-bold">Bottom Sheet Demo</Text>
 					<View className="my-8 size-32 rounded-full bg-slate-900" />
 					<View className="my-8 size-32 rounded-full bg-slate-900" />
+					<View className="pt-8">
+						<Button onPress={() => setShowModal(false)}>Close</Button>
+					</View>
 				</View>
 			</BottomSheet>
 		</>

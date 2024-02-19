@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import type { PropsWithChildren } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
 	clamp,
@@ -16,7 +16,7 @@ import Animated, {
 	withTiming
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { StyleSheetShadows } from '@/lib/constants';
+import { styleSheetShadows, colorPalette, backdropBgColor } from '@/lib/constants';
 
 type BottomSheetProps = PropsWithChildren & {
 	visible: boolean;
@@ -76,18 +76,26 @@ const BottomSheet = (props: BottomSheetProps) => {
 				exiting={FadeOut}
 				style={styles.backdrop}
 			/>
-			<GestureDetector gesture={pan}>
-				<Animated.View
-					entering={SlideInDown.springify().damping(15)}
-					exiting={SlideOutDown}
-					style={[styles.content, translateY, { paddingBottom: insets.bottom - 16, bottom: -20 }]}
-					onLayout={(event) => {
-						contentHeight.current = event.nativeEvent.layout.height;
-					}}
-				>
-					{props.children}
-				</Animated.View>
-			</GestureDetector>
+
+			<Animated.View
+				entering={SlideInDown.springify().damping(15)}
+				exiting={SlideOutDown}
+				style={[
+					styles.content,
+					translateY,
+					{ paddingBottom: 20 + (insets.bottom > 0 ? insets.bottom : 20), bottom: -20 }
+				]}
+				onLayout={(event) => {
+					contentHeight.current = event.nativeEvent.layout.height;
+				}}
+			>
+				<GestureDetector gesture={pan}>
+					<View className="absolute inset-x-0 top-0 h-8 w-full items-center justify-center">
+						<View className="h-2 w-20 rounded-full bg-foreground/60" />
+					</View>
+				</GestureDetector>
+				<View className="w-full flex-1 pt-8">{props.children}</View>
+			</Animated.View>
 		</>
 	);
 };
@@ -99,18 +107,21 @@ const PressAnimated = Animated.createAnimatedComponent(Pressable);
 const styles = StyleSheet.create({
 	backdrop: {
 		...StyleSheet.absoluteFillObject,
-		backgroundColor: 'rgba(0,0,0,0.6)',
-		zIndex: 1
+		backgroundColor: backdropBgColor,
+		zIndex: 10
 	},
 	content: {
-		backgroundColor: 'white',
+		backgroundColor: colorPalette.background,
 		width: '100%',
 		position: 'absolute',
-		zIndex: 2,
+		bottom: 0,
+		left: 0,
+		right: 0,
+		zIndex: 20,
 		borderTopLeftRadius: 24,
 		borderTopRightRadius: 24,
 		paddingTop: 16,
 
-		...StyleSheetShadows.large
+		...styleSheetShadows.large
 	}
 });
