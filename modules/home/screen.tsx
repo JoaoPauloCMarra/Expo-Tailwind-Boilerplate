@@ -5,6 +5,7 @@ import Button from '@/components/button';
 import ThunderIcon from '@/components/icons/thunder-icon';
 import Input from '@/components/input';
 import KeyBoardAvoidContainer from '@/components/keyboard-avoid-container';
+import LinearGradientRect from '@/components/linear-gradient-rect';
 import PageContainer from '@/components/page-container';
 import Text from '@/components/text';
 import useTranslations from '@/hooks/use-translations';
@@ -52,13 +53,19 @@ const HomeScreen = () => {
 						<Text className="text-xs text-slate-800">svg rendered</Text>
 						<ThunderIcon className="ios:shadow-md android:shadow-md size-12 fill-amber-400 stroke-amber-500 web:drop-shadow-md" />
 					</View>
+					<View className="w-full items-center">
+						<LinearGradientRect
+							className="my-4 size-10"
+							colors={['rgba(0,0,0,0.8)', 'transparent']}
+						/>
+					</View>
 					<ScrollView
 						className="my-2 min-h-20 w-full max-w-64 flex-1"
 						showsVerticalScrollIndicator={false}
 						showsHorizontalScrollIndicator={false}
 						bounces={false}
 					>
-						<View className="flex w-full max-w-64 gap-4 py-8">
+						<View className="mb-4 flex w-full max-w-64 gap-4">
 							<Input
 								keyboardType="numeric"
 								returnKeyType="done"
