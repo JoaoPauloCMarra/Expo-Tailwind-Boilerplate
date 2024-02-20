@@ -26,7 +26,7 @@
     "format": "prettier . --write",
     "lint": "eslint . --fix",
     "prepare": "husky install",
-    "postinstall": "bun expo:upgrade"
+    "postinstall": "bun expo:upgrade && bunx pod-install"
   },
   "engines": {
     "node": ">=18",
