@@ -27,13 +27,15 @@ const DemoImagePicker = () => {
 		const result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
 			allowsEditing: true,
-			aspect: [4, 3],
+			aspect: [9, 16],
 			quality: 1
 		});
 
-		if (!result.canceled) {
+		if (!result.canceled && result.assets.length) {
 			setImage(result.assets[0].uri);
+			return;
 		}
+		vibrate();
 	};
 
 	return (

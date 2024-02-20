@@ -31,6 +31,8 @@ const DemoCamera = () => {
 		cameraRef.current.takePictureAsync({
 			imageType: ImageType.jpg,
 			quality: 1,
+			// skipProcessing: true,
+			scale: 1,
 			onPictureSaved: ({ uri }) => setPicture(uri)
 		});
 	}

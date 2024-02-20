@@ -132,6 +132,9 @@ const HomeScreen = () => {
 								>
 									Try the Bottom Sheet demo
 								</Button>
+								<Button className="w-full" onPress={() => router.replace('/slider/')}>
+									Try the Slider demo
+								</Button>
 							</View>
 						</View>
 					</ScrollView>
