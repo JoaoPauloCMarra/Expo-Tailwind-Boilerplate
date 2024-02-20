@@ -52,7 +52,12 @@ const HomeScreen = () => {
 						<Text className="text-xs text-slate-800">svg rendered</Text>
 						<ThunderIcon className="ios:shadow-md android:shadow-md size-12 fill-amber-400 stroke-amber-500 web:drop-shadow-md" />
 					</View>
-					<ScrollView className="min-h-20 w-full max-w-64 flex-1">
+					<ScrollView
+						className="my-2 min-h-20 w-full max-w-64 flex-1"
+						showsVerticalScrollIndicator={false}
+						showsHorizontalScrollIndicator={false}
+						bounces={false}
+					>
 						<View className="flex w-full max-w-64 gap-4 py-8">
 							<Input
 								keyboardType="numeric"
