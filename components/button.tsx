@@ -1,3 +1,5 @@
+import type { Ref } from 'react';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -72,12 +74,19 @@ type Props = TouchableOpacityProps &
 		children: string;
 	};
 
-const Button = ({ children, variant, size, className, ...props }: Props) => (
-	<TouchableOpacity {...props}>
-		<View className={cn(buttonVariants({ variant, size, className }))} hitSlop={defaultHitSlop}>
-			<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{String(children)}</Text>
-		</View>
-	</TouchableOpacity>
+const Button = forwardRef(
+	({ children, variant, size, className, ...props }: Props, ref: Ref<View>) => (
+		<TouchableOpacity {...props}>
+			<View
+				ref={ref}
+				className={cn(buttonVariants({ variant, size, className }))}
+				hitSlop={defaultHitSlop}
+			>
+				<Text className={cn(applyTextClassNamesByVariant(variant, size))}>{String(children)}</Text>
+			</View>
+		</TouchableOpacity>
+	)
 );
+Button.displayName = 'Button';
 
 export default Button;
