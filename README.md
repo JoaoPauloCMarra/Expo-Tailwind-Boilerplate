@@ -1,4 +1,4 @@
-![main](https://github.com/JoaoPauloCMarra/Expo-Boilerplate/actions/workflows/main.yml/badge.svg)
+![main](https://github.com/JoaoPauloCMarra/Expo-Tailwind-Boilerplate/actions/workflows/main.yml/badge.svg)
 
 # Expo Boilerplate
 

@@ -27,9 +27,9 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="expo-boilerplate"/>
+        <data android:scheme="expo-tailwind-boilerplate"/>
         <data android:scheme="com.boilerplate.jpcm"/>
-        <data android:scheme="exp+expo-boilerplate"/>
+        <data android:scheme="exp+expo-tailwind-boilerplate"/>
       </intent-filter>
     </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false"/>

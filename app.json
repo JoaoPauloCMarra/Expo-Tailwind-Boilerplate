@@ -1,8 +1,8 @@
 {
 	"expo": {
-		"name": "Expo Boilerplate",
-		"slug": "expo-boilerplate",
-		"scheme": "expo-boilerplate",
+		"name": "Expo Tailwind Boilerplate",
+		"slug": "expo-tailwind-boilerplate",
+		"scheme": "expo-tailwind-boilerplate",
 		"version": "1.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",

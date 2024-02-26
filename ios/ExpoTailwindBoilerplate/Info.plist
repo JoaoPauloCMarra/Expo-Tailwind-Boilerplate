@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>Expo Boilerplate</string>
+    <string>Expo Tailwind Boilerplate</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,14 +27,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>expo-boilerplate</string>
+          <string>expo-tailwind-boilerplate</string>
           <string>com.boilerplate.jpcm</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+expo-boilerplate</string>
+          <string>exp+expo-tailwind-boilerplate</string>
         </array>
       </dict>
     </array>
