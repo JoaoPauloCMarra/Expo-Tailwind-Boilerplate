@@ -36,8 +36,5 @@ jobs:
         if: steps.setup-bun.outputs.cache-hit != 'true'
         run: bun install --frozen-lockfile --ignore-scripts
 
-      - name: Build
-        run: bun run build
-
       - name: Unit Tests
         run: bun test:unit
