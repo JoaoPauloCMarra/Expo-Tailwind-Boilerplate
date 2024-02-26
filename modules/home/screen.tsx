@@ -1,4 +1,5 @@
 import { isDevice } from 'expo-device';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import Button from '@/components/button';
@@ -46,6 +47,34 @@ const HomeScreen = () => {
 								PT
 							</Button>
 						</View>
+					</View>
+					<View className="my-4 w-full bg-slate-200 py-4">
+						<Text as="h1" className="text-red-500">
+							HTML h1
+						</Text>
+						<Text as="h2" className="text-red-500">
+							HTML h2
+						</Text>
+						<Text as="h3" className="text-red-500">
+							HTML h3
+						</Text>
+						<Text as="h4" className="text-red-500">
+							HTML h4
+						</Text>
+						<Text as="p" className="text-blue-500">
+							HTML p
+						</Text>
+						<Text as="a" className="text-blue-500">
+							HTML a
+						</Text>
+					</View>
+					<View className="h-40 w-full bg-slate-900">
+						<LinearGradient
+							start={{ x: 0, y: 0 }}
+							end={{ x: 0, y: 1 }}
+							colors={['rgb(6,25,49)', 'rgb(14,64,110)', 'rgb(152,165,193)']}
+							style={{ flex: 1 }}
+						/>
 					</View>
 					<Text size="lg">{`Is this a real device? ${isDevice ? 'yes' : 'no'}`}</Text>
 					<Text size="lg">{String(sampleText)}</Text>
